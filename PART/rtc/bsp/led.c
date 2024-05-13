@@ -1,0 +1,114 @@
+#include "led.h"
+
+//关闭流水灯
+void Close_Flow_Led()
+{
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_12,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_15,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+}
+
+//关闭对应目标平台的LED灯
+void Close_Led()
+{
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_8,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_9,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_10,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_11,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+
+}
+//控制流水灯运行 dirction=0--上行，从左往右  dirction=1--下行，从右往左 
+void Led_Dir(uint dirction)
+{
+	if(dirction)
+	{
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_12);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+		HAL_Delay(100);
+		
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+		HAL_Delay(100);
+		
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+		HAL_Delay(100);
+		
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_15);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+		HAL_Delay(100);
+	}
+	
+	else
+	{
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_15);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+		HAL_Delay(100);
+		
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_14);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+		HAL_Delay(100);
+		
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+		HAL_Delay(100);
+		
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_12);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+		HAL_Delay(100);
+	}
+
+}
+//LED显示对应的目标平台
+void Led_Plat(uint platform)
+{
+	switch(platform)
+	{
+	
+	
+		case 1:
+			{
+				HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_8);
+				HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+			}
+			break;
+		
+		case 2:
+			{
+				HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_9);
+				HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+			}
+			break;
+			
+		case 3:
+			{
+				HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_10);
+				HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+			}
+			break;
+		
+		case 4:
+			{
+				HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_11);
+				HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_SET);
+				HAL_GPIO_WritePin(GPIOD,GPIO_PIN_2,GPIO_PIN_RESET);
+			}
+			break;
+		}
+}
